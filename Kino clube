@@ -1,0 +1,39 @@
+npm install lucide-react
+⁠adminLogin(passcode)⁠  
+ ⁠fetchAdminRequests(token)⁠  
+ ⁠decideAdminDeposit(token, id, decision)⁠  
+ ⁠decideAdminWithdrawal(token, id, decision)⁠  
+ ⁠updateRiskConfig(token, config)⁠  
+ ⁠toggleUserFreeze(token, userId, freeze)⁠
+import { useState } from 'react';
+import { AdminModal } from './components/AdminModal';
+
+export const GameDashboard = () => {
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+
+  // የኪስ ቦርሳ ወይም ሒሳብ ዳታ እንደገና የሚጭን ተግባር
+  const handleWalletUpdated = async () => {
+    // ምሳሌ: await fetchUserWallet();
+  };
+
+  return (
+    <main className="min-h-screen bg-[#0B1120] text-slate-100 p-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-xl font-bold">ኬኖ ጨዋታ ዳሽቦርድ</h1>
+        <button
+          onClick={() => setIsAdminOpen(true)}
+          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-sm font-semibold"
+        >
+          የአስተዳዳሪ ፔጅ (Admin)
+        </button>
+      </div>
+
+      {/* የአስተዳዳሪ ሞዳል */}
+      <AdminModal
+        open={isAdminOpen}
+        onClose={() => setIsAdminOpen(false)}
+        onWalletUpdated={handleWalletUpdated}
+      />
+    </main>
+  );
+};
